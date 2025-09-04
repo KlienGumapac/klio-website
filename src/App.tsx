@@ -1,25 +1,62 @@
-import React from 'react';
-import logo from './logo.svg';
+﻿import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Services from './components/Services';
+import About from './components/About';
+import Portfolio from './components/Portfolio';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import Developers from './components/Developers';
 import './App.css';
 
 function App() {
+  const [theme, setTheme] = useState('dark');
+
+  useEffect(() => {
+    // Check for saved theme preference or default to 'dark'
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else {
+      // Check system preference
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(prefersDark ? 'dark' : 'light');
+    }
+  }, []);
+
+  useEffect(() => {
+    // Save theme preference
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+  };
+
+  const HomePage = () => (
+    <>
+      <Header theme={theme} toggleTheme={toggleTheme} />
+      <main>
+        <Hero />
+        <Services />
+        <About />
+        <Portfolio />
+        <Contact />
+      </main>
+      <Footer />
+    </>
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className={`App ${theme}`}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/developers" element={<Developers />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
