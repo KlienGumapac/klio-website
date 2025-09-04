@@ -1,6 +1,6 @@
 ﻿# KLIO Solutions - Professional Software Development Team
 
-![KLIO Solutions Logo](src/assets/images/logo.png)
+![KLIO Solutions Logo](src/assets/images/logowhite.png)
 
 **KLIO Solutions** is a dedicated software development team committed to transforming ideas into powerful digital solutions that drive business success. We specialize in creating innovative software solutions for businesses, capstone projects, and custom applications.
 
