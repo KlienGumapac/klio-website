@@ -15,7 +15,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const Developers: React.FC = () => {
-  // Scroll to top when component mounts
+ 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

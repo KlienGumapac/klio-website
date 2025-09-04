@@ -17,7 +17,6 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
-      // Update active section based on scroll position
       const sections = ["home", "services", "about", "portfolio", "contact"];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
